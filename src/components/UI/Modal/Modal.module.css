@@ -19,3 +19,11 @@
         top: 110%;
     }
 }
+
+@media (min-width: 300px) {
+    .Modal {
+        width: 500px;
+        left: calc(50% - 250px);
+        top: 130%;
+    }
+}
