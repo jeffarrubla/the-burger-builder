@@ -8,10 +8,11 @@ export const authStart = () => {
 	};
 };
 
-export const authSuccess = (authData) => {
+export const authSuccess = (token, userId) => {
 	return {
 		type: actionTypes.AUTH_SUCCESS,
-		authData: authData
+		idToken: token,
+		userId: userId
 	};
 };
 
@@ -30,14 +31,15 @@ export const auth = (email, password, isSignup) => {
 			password: password,
 			returnSecureToken: true
 		};
-		let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]';
+		const api_key = //'Your firebase [API_KEY] here';
+		let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+api_key;
 		if( !isSignup ){
-			url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]';
+			url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+api_key;
 		}
 		axios.post(url, authData)
 			.then(response => {
 				console.log(response);
-				dispatch(authSuccess(response.date));
+				dispatch(authSuccess(response.data.idToken, response.data.localId));
 			})
 			.catch(err => {
 				console.log(err);
