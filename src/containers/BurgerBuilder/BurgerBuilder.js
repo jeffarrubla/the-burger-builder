@@ -11,7 +11,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
 import * as actions from '../../store/actions/index'; //index could be omitted
 
-class BurgerBuilder extends Component {	
+export class BurgerBuilder extends Component {	
 	state = {
 		purchasing: false
 	}
@@ -27,7 +27,7 @@ class BurgerBuilder extends Component {
 			})
 			.reduce((sum, el) => {
 				return sum + el;
-			}, 0);
+			}, 0);		
 		return sum > 0;
 	}
 	
