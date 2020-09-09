@@ -48,6 +48,7 @@ export const auth = (email, password, isSignup) => {
 			password: password,
 			returnSecureToken: true
 		};
+		
 		const api_key = //'Your firebase [API_KEY] here';
 		let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+api_key;
 		if( !isSignup ){
